@@ -1,0 +1,74 @@
+body{
+    background-color: lightcyan;
+    text-align: justify;
+    font-family: "Courier New";
+
+}
+
+h1{
+    font-size: 40px;
+    text-align: center;
+}
+
+
+
+
+/*======home==========================================================================*/
+.maincontent{
+    display: flex;
+    padding: 10px 10%;
+
+}
+
+.Homeright{
+    width: 50%;
+    margin-left: 10px;
+    background-color: ghostwhite;
+    padding: 5px;
+}
+
+.Homeleft{
+    width: 50%;
+    background-color: ghostwhite;
+    padding: 5px;
+}
+
+.searchbar{
+    height: 30px;
+    width: 90%;
+    margin: 15px;
+
+}
+
+
+
+
+
+/*====template==================================================================*/
+.main-template{
+    background-color: bisque;
+    border: solid 1px black;
+    display: flex;
+    padding: 4px;
+    margin-bottom: 5px;
+
+}
+
+
+.picture-container{
+    height: 150px;
+    padding: 3px;
+
+}
+
+.picture-style{
+    height: 100%;
+    width: auto;
+
+}
+
+
+.text-container{
+    padding: 3px;
+}
+

@@ -2,71 +2,70 @@ import React from "react";
 import gql from "graphql-tag"
 import { client } from './endpoint/endpoint.js'
 
-class Page extends React.Component{
+export default class extends React.Component{
+    state = { items: [] }
 
-    state = { name: "", category: "", description: "", picture: "" }
+
+    async componentDidMount(){
+        console.log("hello")
+    }
 
     render() {
-
-        const datatodb = async () => {
-            console.log("hello")
-            console.log(this.state)
-
-                let temp1 = await client.mutate({
-                    mutation: gql`
-                        mutation{
-                            createItem(data: {
-                                name: "${this.state.name}",
-                                category: "${this.state.category}",
-                                description: "${this.state.description}",
-                                picture: "${this.state.picture}?raw=true"
-                            } ){
-                                id
-                                name
-                                category
-                                description
-                                picture
-                            }
+        const loadItems = async () => {
+            let temp1 = await client.query({
+                query: gql`
+                    query {
+                        items{
+                            id
+                            name
+                            category
+                            description
+                            picture
                         }
-                    `}).then((result) => { return result.data.createUser } )
+                    }
+                `}).then((result) => { return result.data} )
 
-                await console.log("La Data: ", temp1 )
-                await this.setState({ name: '', category: '', description: '', picture: '' })
+            await console.log("it works!: ", temp1 )
+            await this.setState({ items: temp1 })
         }
 
-        return(
+        const deleteById = async (itemId) => {
+            console.log("Delete by Id: ")
+
+
+            let temp1 = await client.mutate({
+                mutation: gql`
+                    mutation{
+                        deleteItem(where: { id: "${itemId}" }){
+                            id
+                            name
+                        }
+                    }
+                `}).then((result) => { return result.data.createItems } )
+        }
+
+
+
+            return(
             <div>
                 <h1>MyCloset</h1>
 
-                {/*<input type="text"/>*/}
-                {/*<button>Search</button>*/}
-                {/*<hr/>*/}
-                {/*<p>things are going here</p>*/}
+                {this.state.items[0] ? this.state.items.map((item) => {return (
+                    <div>
+                        <h2>{item.name}</h2>
+                        <img src ={item.picture}/>
+                        <button onClick={deleteById(item.id)}>delete</button>
+                    </div>
+                    )}):
 
 
-                <div>name</div>
-                <input type="text" value={ this.state.name } onChange={ (e) => { this.setState({ name: e.target.value }) } } />
-                <br/><br/>
 
-                <div>category</div>
-                <input type="text" value={ this.state.category } onChange={ (e) => { this.setState({ category: e.target.value }) } } />
-                <br/><br/>
-
-                <div>description</div>
-                <input type="text" value={ this.state.description } onChange={ (e) => { this.setState({ description: e.target.value }) } } />
-                <br/><br/>
-
-                <div>picture</div>
-                <input type="text" value={ this.state.picture } onChange={ (e) => { this.setState({ picture: e.target.value }) } } />
-                <br/><br/>
-
-                <button onClick={datatodb} >submit</button>
-
-
+                <button onClick={loadItems}>Load Items </button>
+                }
 
             </div>
         )
     }
 }
 
-export default Page;
+

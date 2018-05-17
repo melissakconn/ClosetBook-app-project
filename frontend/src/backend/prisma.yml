@@ -1,0 +1,8 @@
+#endpoint: https://us1.prisma.sh/public-redsalmon-519/backend/dev
+datamodel: datamodel.graphql
+seed:
+  import: seed.graphql
+endpoint: https://us1.prisma.sh/melissa-conn/project/dev
+service: project
+stage: dev
+disableAuth: true

@@ -1,0 +1,15 @@
+mutation {
+    createItem(
+        data: {
+            name: "jacket",
+            category: "tops"
+            description: "black bomber jacket"
+            picture: "https://github.com/melissakconn/projectphotos/blob/master/tops/jacket.png"
+        }
+    ) {
+        id
+        name
+        description
+
+    }
+}

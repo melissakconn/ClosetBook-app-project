@@ -1,5 +1,6 @@
 import React from 'react';
 import { HashRouter, Route, Link } from 'react-router-dom';
+import './stylesheet.css'
 
 import Home from './01-Home';
 import MyCloset from './02-MyCloset';
@@ -8,6 +9,10 @@ import LookBook from './03-LookBook';
 
 
 class MainComp extends React.Component {
+
+
+
+
     render() {
         return(
             <HashRouter>
