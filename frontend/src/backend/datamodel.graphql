@@ -1,9 +1,0 @@
-type Item  {
-    id: ID! @unique
-    name: String!
-    category: String!
-    description: String!
-    picture: String!
-
-}
-
